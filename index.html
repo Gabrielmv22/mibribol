@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BriBol 💓</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <audio id="cancionAmor" src="cancion.mp3" preload="auto"></audio>
+
+    <div id="mensajeTeAmo" class="oculto">Te amo</div>
+    <audio id="cancionAmor" src="cancion.mp3" preload="auto"></audio>
+    <div id="mensajeTeAmo" class="oculto">Te amo</div>
+
+    <script>
+        // Buscamos tu botón desencriptar (asegúrate de que el botón en tu HTML tenga id="botonDesencriptar")
+        const boton = document.getElementById('botonDesencriptar');
+        
+        if(boton) {
+            boton.addEventListener('click', function() {
+                // Iniciar la canción
+                const audio = document.getElementById('cancionAmor');
+                audio.play().catch(error => {
+                    console.log("El navegador bloqueó el autoplay:", error);
+                });
+
+                // Activar el mensaje de "Te amo" a los 5 segundos (5000 ms)
+                setTimeout(() => {
+                    const mensaje = document.getElementById('mensajeTeAmo');
+                    mensaje.classList.remove('oculto');
+                    mensaje.classList.add('destello');
+                }, 5000);
+            });
+        } else {
+            console.log("No se encontró el botón con el ID 'botonDesencriptar'");
+        }
+    </script>
+</body>
+</html>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
