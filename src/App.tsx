@@ -169,7 +169,7 @@ export default function App() {
                   className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none px-4"
                 >
                   {/* Aquí agregué tu "RATABOL", asegurando que tenga la letra romántica y se ajuste al móvil */}
-                  <h1 className="text-6xl md:text-9xl font-romantic font-bold text-[#ff4d6d] drop-shadow-[0_0_30px_rgba(255,77,109,1)] text-center leading-tight">
+                  <h1 className="text-6xl md:text-9xl font-romantic font-bold text-white drop-shadow-[0_0_30px_rgba(255,77,109,1)] text-center leading-tight">
                     RATABOL 💓
                   </h1>
                 </motion.div>
