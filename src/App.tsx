@@ -25,19 +25,16 @@ const Typewriter = ({ text, delay = 50, onComplete }: { text: string, delay?: nu
 export default function App() {
   const [stage, setStage] = useState<'console' | 'reveal'>('console');
   const [consoleFinished, setConsoleFinished] = useState(false);
-  const [showTeAmo, setShowTeAmo] = useState(false); // Estado para mostrar el mensaje
-  const audioRef = useRef<HTMLAudioElement | null>(null); // Referencia al audio
+  const [showTeAmo, setShowTeAmo] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Función que maneja el inicio de la sorpresa
   const triggerSurprise = useCallback(() => {
     setStage('reveal');
     
-    // 1. Reproducir la canción
     if (audioRef.current) {
       audioRef.current.play().catch(err => console.log("Audio bloqueado:", err));
     }
 
-    // 2. Mostrar el "Te amo" con destello después de 5 segundos
     setTimeout(() => {
       setShowTeAmo(true);
     }, 5000);
@@ -54,7 +51,6 @@ export default function App() {
       onClick={handleReveal}
       className={`relative min-h-screen w-full flex items-center justify-center bg-[#050505] selection:bg-pink-deep/30 ${stage === 'console' && consoleFinished ? 'cursor-pointer' : ''}`}
     >
-      {/* Etiqueta de audio oculta */}
       <audio ref={audioRef} src="/cancion.mp3" preload="auto" />
 
       <div className="scanline" />
@@ -66,7 +62,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 1.05 }}
-            className="w-full max-w-2xl p-8 font-mono text-sm md:text-base text-white/80"
+            className="w-full max-w-2xl p-4 md:p-8 font-mono text-xs md:text-base text-white/80"
           >
             <div className="space-y-2">
               <div className="flex gap-2 text-pink-soft/60">
@@ -95,7 +91,7 @@ export default function App() {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="pt-8 flex flex-col items-start gap-6"
+                  className="pt-6 md:pt-8 flex flex-col items-start gap-4 md:gap-6"
                 >
                   <p className="text-white/40 italic">
                     {">"} Bruhhh haz click aqui.
@@ -105,16 +101,16 @@ export default function App() {
                     id="decrypt-button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      triggerSurprise(); // Llamamos a la función aquí
+                      triggerSurprise(); 
                     }}
-                    className="group flex items-center gap-3 px-6 py-3 border border-pink-deep/30 bg-pink-deep/5 hover:bg-pink-deep/10 text-pink-soft transition-all duration-300 pointer-events-auto"
+                    className="group flex items-center gap-2 md:gap-3 px-4 py-2 md:px-6 md:py-3 border border-pink-deep/30 bg-pink-deep/5 hover:bg-pink-deep/10 text-pink-soft transition-all duration-300 pointer-events-auto"
                   >
-                    <Lock size={16} className="group-hover:rotate-12 transition-transform" />
-                    <span className="font-mono tracking-widest uppercase text-xs">Haz click amorcito</span>
+                    <Lock size={14} className="group-hover:rotate-12 transition-transform md:w-4 md:h-4" />
+                    <span className="font-mono tracking-widest uppercase text-[10px] md:text-xs">Haz click amorcito</span>
                     <span className="terminal-cursor" />
                   </button>
                   
-                  <p className="text-[10px] text-white/20 animate-pulse">
+                  <p className="text-[9px] md:text-[10px] text-white/20 animate-pulse">
                     (o donde sea :D)
                   </p>
                 </motion.div>
@@ -136,28 +132,27 @@ export default function App() {
               transition={{ delay: 3, duration: 1.5 }}
               className="z-20 text-center"
             >
-              <h2 className="text-pink-deep font-mono text-xl tracking-[0.3em] uppercase glow-text mb-2">
+              <h2 className="text-pink-deep font-mono text-lg md:text-xl tracking-[0.3em] uppercase glow-text mb-2">
                 ...
               </h2>
-              <div className="w-12 h-px bg-pink-deep/30 mx-auto mb-8" />
+              <div className="w-12 h-px bg-pink-deep/30 mx-auto mb-6 md:mb-8" />
               
               <motion.button
                 onClick={(e) => {
                   e.stopPropagation();
                   setStage('console');
-                  setShowTeAmo(false); // Ocultar si decide re-encriptar
+                  setShowTeAmo(false); 
                   if(audioRef.current) {
-                    audioRef.current.pause(); // Pausar canción si re-encripta
+                    audioRef.current.pause(); 
                     audioRef.current.currentTime = 0;
                   }
                 }}
-                className="text-white/20 hover:text-white/60 transition-colors uppercase text-[10px] tracking-widest font-mono"
+                className="text-white/20 hover:text-white/60 transition-colors uppercase text-[9px] md:text-[10px] tracking-widest font-mono p-2"
               >
                 Volver al principio
               </motion.button>
             </motion.div>
 
-            {/* Mensaje "Te amo" con efecto destello usando Framer Motion */}
             <AnimatePresence>
               {showTeAmo && (
                 <motion.div
@@ -171,23 +166,23 @@ export default function App() {
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
-                  className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
+                  className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none px-4"
                 >
-                  <h1 className="text-7xl md:text-9xl font-bold text-[#ff4d6d] drop-shadow-[0_0_30px_rgba(255,77,109,1)]">
+                  {/* Aquí agregué tu "RATABOL", asegurando que tenga la letra romántica y se ajuste al móvil */}
+                  <h1 className="text-6xl md:text-9xl font-romantic font-bold text-[#ff4d6d] drop-shadow-[0_0_30px_rgba(255,77,109,1)] text-center leading-tight">
                     RATABOL 💓
                   </h1>
                 </motion.div>
               )}
             </AnimatePresence>
 
-            {/* Subtle tech overlays */}
-            <div className="absolute top-8 left-8 text-[10px] font-mono text-white/10 uppercase tracking-widest space-y-1">
+            <div className="absolute top-4 left-4 md:top-8 md:left-8 text-[8px] md:text-[10px] font-mono text-white/10 uppercase tracking-widest space-y-1">
                 <div>ln: 420</div>
                 <div>id: 0xDEADBEEF</div>
                 <div>type: ????</div>
             </div>
             
-            <div className="absolute bottom-8 right-8 text-[10px] font-mono text-white/10 uppercase tracking-widest">
+            <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 text-[8px] md:text-[10px] font-mono text-white/10 uppercase tracking-widest">
                 mi corazoncito para mi bri // proceso exitoso
             </div>
           </motion.div>
