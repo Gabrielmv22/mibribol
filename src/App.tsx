@@ -62,7 +62,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 1.05 }}
-            className="w-full max-w-2xl p-4 md:p-8 font-mono text-xs md:text-base text-white/80"
+            className="w-full max-w-2xl p-2 md:p-8 font-mono text-xs md:text-base text-white/80"
           >
             <div className="space-y-2">
               <div className="flex gap-2 text-pink-soft/60">
